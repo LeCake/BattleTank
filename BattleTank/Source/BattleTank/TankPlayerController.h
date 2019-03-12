@@ -4,6 +4,7 @@
 
 #include "Tank.h"
 #include "CoreMinimal.h"
+#include "GameFramework/GameMode.h"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
 
@@ -20,4 +21,8 @@ public:
 	ATank* GetControlledTank() const;
 
 	virtual void BeginPlay() override;
+
+	virtual void Tick(float DeltaTime) override;
+	
+	void AimTowardsCrosshair();	
 };

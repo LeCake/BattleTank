@@ -5,6 +5,7 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
+	//
 	UE_LOG(LogTemp, Warning, TEXT("Playercontroller Begin Play"));
 	
 	auto ControlledTank = GetControlledTank();
@@ -19,7 +20,20 @@ void ATankPlayerController::BeginPlay()
 
 }
 
+void ATankPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	PrimaryActorTick.bCanEverTick = true;
+	
+}
+
 ATank* ATankPlayerController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
+}
+
+void ATankPlayerController::AimTowardsCrosshair()
+{
+	if (!GetControlledTank()) { return; }
+
 }
