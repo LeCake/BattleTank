@@ -27,7 +27,7 @@ void ATankAIController::Tick(float DeltaSeconds)
 
 	if (GetPlayerTank())
 	{
-		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+		GetControlledTank()->TankAimingComponent->AimAt(GetPlayerTank()->GetActorLocation());
 	}
 
 }
