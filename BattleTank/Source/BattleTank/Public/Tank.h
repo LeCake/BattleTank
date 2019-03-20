@@ -56,5 +56,5 @@ private:
 
 	UTankBarrel* Barrel = nullptr;
 	
-	double LastFireTime = 0;
+	float LastFireTime = 0.f;
 };
