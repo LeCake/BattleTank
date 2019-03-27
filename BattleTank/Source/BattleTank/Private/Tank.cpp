@@ -2,11 +2,6 @@
 
 
 #include "Tank.h"
-#include "TankMovementComponent.h"
-#include "TankAimingComponent.h"
-#include "TankBarrel.h"
-#include "Projectile.h"
-
 #include "Engine/World.h"
 
 // Sets default values
@@ -16,23 +11,6 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-void ATank::BeginPlay()
-{
-	Super::BeginPlay();
-}
 
-void ATank::Fire()
-{
-	if (!ensure(Barrel)) { return; }
-	bool isReloaded = (GetWorld()->GetTimeSeconds() - LastFireTime) > ReloadTimeInSeconds;
-
-	if (isReloaded)
-	{
-		auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Barrel->GetSocketLocation(FName("Projectile")), Barrel->GetSocketRotation(FName("Projectile")));
-		Projectile->LaunchProjectile(LaunchSpeed);
-		LastFireTime = GetWorld()->GetTimeSeconds();
-	}
-
-}
 
 

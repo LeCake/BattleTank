@@ -28,6 +28,9 @@ public:
 
 	void AimAt(FVector HitLocation);
 
+	UFUNCTION(BlueprintCallable)
+	void Fire();
+
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 	EFiringStatus FiringState = EFiringStatus::Aiming;
@@ -35,13 +38,20 @@ protected:
 private:
 	UTankAimingComponent();
 
-	UTankBarrel* Barrel = nullptr;
-
-	UTankTurret* Turret = nullptr;
-
 	void MoveBarrelTowards(FVector);
+
+	UTankBarrel* Barrel = nullptr;
+	UTankTurret* Turret = nullptr;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 4000;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	float ReloadTimeInSeconds = 3;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
+	float LastFireTime = 0.f;
 
 };
